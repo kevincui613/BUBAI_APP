@@ -2,7 +2,10 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 
+const publicBasePath = process.env.VITE_PUBLIC_BASE_PATH || "/";
+
 export default defineConfig({
+  base: publicBasePath,
   plugins: [vue()],
   resolve: {
     alias: {

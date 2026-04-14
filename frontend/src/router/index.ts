@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHashHistory, createWebHistory } from "vue-router";
 import DashboardView from "@/views/dashboard/DashboardView.vue";
 import GoalsView from "@/views/goals/GoalsView.vue";
 import CalendarView from "@/views/calendar/CalendarView.vue";
@@ -11,7 +11,9 @@ import TeamsView from "@/views/social/TeamsView.vue";
 import AiPlannerView from "@/views/ai/AiPlannerView.vue";
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: import.meta.env.VITE_USE_HASH_ROUTER === "true"
+    ? createWebHashHistory()
+    : createWebHistory(import.meta.env.BASE_URL),
   routes: [
     { path: "/", redirect: "/dashboard" },
     { path: "/dashboard", component: DashboardView, meta: { requiresAuth: true } },
